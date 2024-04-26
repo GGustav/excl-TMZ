@@ -21,13 +21,6 @@ for i in range(1, len(gammatel_A)):
 # TODO Create functions for gamma_extras to call to calculate victim date, time, and end time.
 
 
-# Do extra calculations to fill the sheet for user-wanted/created information. Can fill with other cases of cellname ==
-def gamma_extras(cellname, row):
-    if cellname == 'ID':
-        return row-1
-    else:
-        return '0'
-
 def gamma_sheet(original_sheet, targetnumber, format):
     original_headers = column_headers(original_sheet)
     # Create result workbook and sheet
@@ -46,9 +39,11 @@ def gamma_sheet(original_sheet, targetnumber, format):
                 continue
             if cell in original_headers:
                 ws_result.cell(row=i, column=column, value=original_sheet.cell(row=i, column=original_headers[cell]).value)
-            else:
-                ws_result.cell(row=i, column=column, value=gamma_extras(cell, i))
-        # Iterate over data that requires knowledge of whether A or B party.
+            elif cell == 'ID':
+                ws_result.cell(row=i, column=column, value=i - 1)
+            else:  # expand with more elifs for specific cell types
+                ws_result.cell(row=i, column=column, value='0')
+                # Iterate over data that requires knowledge of whether A or B party.
         # If A party is our target, do this.
         if original_sheet.cell(row=i, column=original_headers['A Party Number']).value == targetnumber:
             # Set target to A party in sheet

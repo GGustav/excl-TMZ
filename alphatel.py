@@ -20,13 +20,6 @@ for i in range(0, len(alphatel_A)):
 
 # TODO Create functions for alpha_extras to call to calculate victim date, time, and end time.
 
-# Do extra calculations to fill the sheet for user-wanted/created information. Can fill with other cases of cellname ==
-def alpha_extras(cellname, row):
-    if cellname == 'ID':
-        return row-1
-    else:
-        return '0'
-
 
 def alpha_sheet(original_sheet, targetnumber, format):
     original_headers = column_headers(original_sheet)
@@ -44,10 +37,12 @@ def alpha_sheet(original_sheet, targetnumber, format):
             column += 1
             if cell == 'A or B':
                 continue
-            if cell in original_headers:
+            elif cell in original_headers:
                 ws_result.cell(row=i, column=column, value=original_sheet.cell(row=i, column=original_headers[cell]).value)
-            else:
-                ws_result.cell(row=i, column=column, value=alpha_extras(cell, i))
+            elif cell == 'ID':
+                ws_result.cell(row=i, column=column, value=i-1)
+            else: #expand with more elifs for specific cell types
+                ws_result.cell(row=i, column=column, value='0')
         # Iterate over data that requires knowledge of whether A or B party.
         # If A party is our target, do this.
         if original_sheet.cell(row=i, column=original_headers['A Number']).value == targetnumber:
