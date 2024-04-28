@@ -1,6 +1,7 @@
 import openpyxl
 from openpyxl import Workbook
 from utility import column_headers
+from utility import target_numbers
 import copy
 
 # Sure wishing I had fuzzy search right about now to do this automatically from the sheet
@@ -52,7 +53,12 @@ def alpha_sheet(original_sheet, targetnumber, format):
             for cell in alphatel_A:
                 column += 1
                 if cell in original_headers:
-                    ws_result.cell(row=i, column=column, value=original_sheet.cell(row=i, column=original_headers[cell]).value)
+                    # Check the temporary value if you want to do some specific modifications to it. In my case I want to check phone number to see if it's one of the targets
+                    tempvalue = original_sheet.cell(row=i, column=original_headers[cell]).value
+                    if tempvalue in target_numbers.values():
+                        tempvalue = (list(target_numbers.keys())
+                        [list(target_numbers.values()).index(tempvalue)])
+                    ws_result.cell(row=i, column=column, value=tempvalue)
         # If A party is not our target, do this
         else:
             # Set target to B party in sheet
@@ -61,5 +67,10 @@ def alpha_sheet(original_sheet, targetnumber, format):
             for cell in alphatel_B:
                 column += 1
                 if cell in original_headers:
-                    ws_result.cell(row=i, column=column, value=original_sheet.cell(row=i, column=original_headers[cell]).value)
+                    # Check the temporary value if you want to do some specific modifications to it. In my case I want to check phone number to see if it's one of the targets
+                    tempvalue = original_sheet.cell(row=i, column=original_headers[cell]).value
+                    if tempvalue in target_numbers.values():
+                        tempvalue = (list(target_numbers.keys())
+                        [list(target_numbers.values()).index(tempvalue)])
+                    ws_result.cell(row=i, column=column, value=tempvalue)
     return wb_result

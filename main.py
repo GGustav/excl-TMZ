@@ -3,6 +3,7 @@ from openpyxl import Workbook
 from alphatel import alpha_sheet
 from betatel import beta_sheet
 from gammatel import gamma_sheet
+from utility import target_providers, target_numbers
 import os
 
 # Victim timezone - ACST. UTC+10:30 during winter, UTC+9:30 during summer.
@@ -19,19 +20,6 @@ import os
 
 # Create dictionary for column title as key and its position in the sheet as value
 
-# Target phone numbers
-target_numbers = {'Jupiter' : '6148932837',
-           'Mars' : '6141435201',
-           'Mercury' : '6141928499',
-           'Sol' : '6142358191',
-           'Venus' : '6142819374'}
-
-# Target providers
-target_providers= {'Jupiter' : 'GammaTel',
-             'Mars' : 'BetaTel',
-             'Mercury' : 'BetaTel',
-             'Sol' : 'AlphaTel',
-             'Venus': 'AlphaTel'}
 
 # Set format
 format = ['ID', 'Event', 'Date', 'Time', 'Duration', 'End time', 'A or B', 'Other number', 'Target start loc', 'Other start loc', 'Target end loc', 'Other end loc',
