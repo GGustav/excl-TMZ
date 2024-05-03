@@ -7,7 +7,7 @@ import copy
 # Sure wishing I had fuzzy search right about now to do this automatically from the sheet
 betatel_main = ['ID', 'Data Type', 'victimdate', 'victimtime', 'Duration', 'endtime', 'A or B']
 betatel_A = ['Terminating Number', 'Originating Party Start Location Name',
-              'Terminating Party Start Location Name', 'Originating Party End Location Name', 'Terminating Party End Location Name', 'Originating Party Start Base Station ID', 'Terminating Party Start Base Station ID', 'Originating Party End Base Station ID', 'Terminating Party End Base Station ID',
+              'Terminating Party Start Location Name', 'Originating Party End Location Name', 'Terminating Party End Location Name', 'Originating Party Start Location CGI', 'Terminating Party Start Location CGI', 'Originating Party End Location CGI', 'Terminating Party End Location CGI',
               'Originating Party Start Location Latitude', 'Originating Party Start Location Longitude', 'Originating Party Start Location Bearing', 'Terminating Party Start Location Latitude', 'Terminating Party Start Location Longitude', 'Terminating Party Start Location Bearing',
               'Originating Party End Location Latitude', 'Originating Party End Location Longitude', 'Originating Party End Location Bearing', 'Terminating Party End Location Latitude', 'Terminating Party End Location Longitude', 'Terminating Party End Location Bearing']
 
