@@ -21,10 +21,6 @@ import os
 # Create dictionary for column title as key and its position in the sheet as value
 
 
-# Set format
-format = ['ID', 'Event', 'Date', 'Time', 'Duration', 'End time', 'A or B', 'Other number', 'Target start loc', 'Other start loc', 'Target end loc', 'Other end loc',
-          'Target start base station', 'Other start base station', 'Target end base station', 'Other end base station', 'Target start lat', 'Target start lon', 'Target start bearing',
-          'Other start lat', 'Other start lon', 'Other start bearing', 'Target end lat', 'Target end lon', 'Target end bearing', 'Other end lat', 'Other end lon', 'Other end bearing']
 
 # Iterate over files in /originals
 for file in os.listdir('originals'):
@@ -40,11 +36,11 @@ for file in os.listdir('originals'):
     # Use function based on provider
     match target_providers[target]:
         case 'AlphaTel':
-            result = alpha_sheet(ws_orig, target_numbers[target], format)
+            result = alpha_sheet(ws_orig, target_numbers[target])
         case 'BetaTel':
-            result = beta_sheet(ws_orig, target_numbers[target], format)
+            result = beta_sheet(ws_orig, target_numbers[target])
         case 'GammaTel':
-            result = gamma_sheet(ws_orig, target_numbers[target], format)
+            result = gamma_sheet(ws_orig, target_numbers[target])
 
     result.save(filename=outputpath)
     print("Creation of", outputpath, "successful")
