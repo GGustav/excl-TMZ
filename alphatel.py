@@ -27,6 +27,10 @@ def alpha_sheet(original_sheet, targetnumber):
     # Create headers
     for cell in format:
         ws_result.cell(row=1, column=format.index(cell)+1, value=cell)
+    #Initialize variables to save previous lat/lon
+    prevlat = None
+    prevlon = None
+    prevtz = None
     # Create data into every row, one row at a time
     for i in range(2, original_sheet.max_row+1):
         #check if A_party
@@ -65,13 +69,20 @@ def alpha_sheet(original_sheet, targetnumber):
                 else:
                     lat = original_sheet.cell(row=i, column=original_headers["B Start Location Latitude"]).value
                     lon = original_sheet.cell(row=i, column=original_headers["B Start Location Longitude"]).value
-                targettz_raw = timezone_coord(lat, lon)
-                targettz = pytz.timezone(targettz_raw)
+                # If coords same as previous, skip timezone calculation as it is extremely time intensive
+                if lat == prevlat and lon == prevlon:
+                    targettz = prevtz
+                else:
+                    targettz_raw = timezone_coord(lat, lon)
+                    targettz = pytz.timezone(targettz_raw)
                 targettime = origtime_tz.astimezone(targettz)
                 targettime_fix = targettime.replace(tzinfo=None)
                 ws_result.cell(row=i, column=column+1, value=targettime_fix)
                 #Target timezone
                 print(i, targettz_raw)
+                prevlat = lat
+                prevlon = lon
+                prevtz = targettz
                 ws_result.cell(row=i, column=column+2, value=targettz_raw)
             # elif cell == 'endtime':
             #     durationsec = original_sheet.cell(row=i, column=original_headers["Duration"]).value
