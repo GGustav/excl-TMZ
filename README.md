@@ -1,15 +1,15 @@
+<a name="readme-top"></a>
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-<a name="readme-top"></a>
 
 
 <br />
 <div align="center">
 
-  <h3 align="center">EXCL-TMZ</h3>
+<h3 align="center">EXCL-TMZ</h3>
 
   <p align="center">
     A neat tool to help organize network data records for forensic investigations
@@ -18,6 +18,7 @@
 
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
@@ -42,6 +43,7 @@ _Project runs out the box. For details on supplying own files, read below_
 
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [x] Basic prototype
@@ -54,11 +56,14 @@ _Project runs out the box. For details on supplying own files, read below_
 
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
+contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also
+simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
@@ -72,6 +77,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
@@ -81,6 +87,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
+
 ## Contact
 
 gugret@taltech.ee
@@ -90,6 +97,7 @@ gugret@taltech.ee
 
 
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
 * [Best README template](https://github.com/othneildrew/Best-README-Template)
@@ -101,13 +109,23 @@ gugret@taltech.ee
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/GGustav/excl-tmz?style=for-the-badge
+
 [contributors-url]: https://github.com/GGustav/excl-tmz/graphs/contributors
+
 [forks-shield]: https://img.shields.io/github/forks/GGustav/excl-tmz?style=for-the-badge
+
 [forks-url]: https://github.com/GGustav/excl-tmz/network/members
+
 [stars-shield]: https://img.shields.io/github/stars/GGustav/excl-tmz?style=for-the-badge
+
 [stars-url]: https://github.com/GGustav/excl-tmz/stargazers
+
 [issues-shield]: https://img.shields.io/github/issues/GGustav/excl-tmz?style=for-the-badge
+
 [issues-url]: https://github.com/GGustav/excl-tmz/issues
+
 [license-shield]: https://img.shields.io/github/license/GGustav/excl-tmz?style=for-the-badge
+
 [license-url]: https://github.com/GGustav/excl-tmz/blob/master/LICENSE.txt

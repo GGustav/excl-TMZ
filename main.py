@@ -1,7 +1,7 @@
 import os
+import shutil
 
 import openpyxl
-import shutil
 
 from alphatel import alpha_sheet
 from betatel import beta_sheet

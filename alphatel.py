@@ -1,7 +1,6 @@
-from openpyxl import Workbook
+from datetime import timedelta
 
 from utility import *
-from datetime import timedelta
 
 
 def alpha_sheet(original_book, targetnumber):
