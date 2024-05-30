@@ -1,24 +1,5 @@
-import openpyxl
 from openpyxl import Workbook
 from utility import *
-import copy
-
-# Sure wishing I had fuzzy search right about now to do this automatically from the sheet
-betatel_A = ['Terminating Number', 'Originating Party Start Location Name',
-              'Terminating Party Start Location Name', 'Originating Party End Location Name', 'Terminating Party End Location Name', 'Originating Party Start Location CGI', 'Terminating Party Start Location CGI', 'Originating Party End Location CGI', 'Terminating Party End Location CGI',
-              'Originating Party Start Location Latitude', 'Originating Party Start Location Longitude', 'Originating Party Start Location Bearing', 'Terminating Party Start Location Latitude', 'Terminating Party Start Location Longitude', 'Terminating Party Start Location Bearing',
-              'Originating Party End Location Latitude', 'Originating Party End Location Longitude', 'Originating Party End Location Bearing', 'Terminating Party End Location Latitude', 'Terminating Party End Location Longitude', 'Terminating Party End Location Bearing']
-
-# Create betatel_B automatically since I am not typing all that out again
-betatel_B = copy.deepcopy(betatel_A)
-for i in range(0, len(betatel_A)):
-    if betatel_B[i][0] == 'T':
-        betatel_B[i] = betatel_B[i].replace('Terminating', 'Originating', 1)
-    elif betatel_B[i][0] == 'O':
-        betatel_B[i] = betatel_B[i].replace('Originating', 'Terminating', 1)
-
-
-beta_tz = pytz.timezone("Australia/Perth")
 
 def beta_sheet(original_sheet, targetnumber):
     original_headers = column_headers(original_sheet)

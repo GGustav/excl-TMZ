@@ -1,23 +1,5 @@
-import openpyxl
 from openpyxl import Workbook
 from utility import *
-import copy
-
-# Sure wishing I had fuzzy search right about now to do this automatically from the sheet
-alphatel_A = ['B Number', 'A Start Location Name',
-              'B Start Location Name', 'A End Location Name', 'B End Location Name', 'A Start Location CGI', 'B Start Location CGI', 'A End Location CGI', 'B End Location CGI',
-              'A Start Location Latitude', 'A Start Location Longitude', 'A Start Location Bearing', 'B Start Location Latitude', 'B Start Location Longitude', 'B Start Location Bearing',
-              'A End Location Latitude', 'A End Location Longitude', 'A End Location Bearing', 'B End Location Latitude', 'B End Location Longitude', 'B End Location Bearing']
-
-# Create alphatel_B automatically since I am not typing all that out again
-alphatel_B = copy.deepcopy(alphatel_A)
-for i in range(0, len(alphatel_A)):
-    if alphatel_B[i][0] == 'A':
-        alphatel_B[i] = alphatel_B[i].replace('A', 'B', 1)
-    elif alphatel_B[i][0] == 'B':
-        alphatel_B[i] = alphatel_B[i].replace('B', 'A', 1)
-
-alpha_tz = pytz.timezone("Etc/UTC")
 
 def alpha_sheet(original_sheet, targetnumber):
     original_headers = column_headers(original_sheet)

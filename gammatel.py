@@ -1,27 +1,6 @@
-import openpyxl
 from openpyxl import Workbook
-# from utility import target_providers, column_headers
-# from datetime import datetime
-# import pytz
 from utility import *
-import copy
 
-# Sure wishing I had fuzzy search right about now to do this automatically from the sheet
-gammatel_A = ['B Number', 'A Party Start Location Name',
-              'B Party Start Location Name', 'A Party End Location Name', 'B Party End Location Name', 'A Party Start Base Station ID', 'B Party Start Base Station ID', 'A Party End Base Station ID', 'B Party End Base Station ID',
-              'A Party Start Location Latitude', 'A Party Start Location Longitude', 'A Party Start Location Bearing', 'B Party Start Location Latitude', 'B Party Start Location Longitude', 'B Party Start Location Bearing',
-              'A Party End Location Latitude', 'A Party End Location Longitude', 'A Party End Location Bearing', 'B Party End Location Latitude', 'B Party End Location Longitude', 'B Party End Location Bearing']
-
-# Create gammatel_B automatically since I am not typing all that out again
-gammatel_B = copy.deepcopy(gammatel_A)
-gammatel_B[0] = 'A Party Number'
-for i in range(1, len(gammatel_A)):
-    if gammatel_B[i][0] == 'A':
-        gammatel_B[i] = gammatel_B[i].replace('A', 'B', 1)
-    elif gammatel_B[i][0] == 'B':
-        gammatel_B[i] = gammatel_B[i].replace('B', 'A', 1)
-
-gamma_tz = pytz.timezone("Etc/UTC")
 
 def gamma_sheet(original_sheet, targetnumber):
     original_headers = column_headers(original_sheet)
@@ -71,7 +50,6 @@ def gamma_sheet(original_sheet, targetnumber):
                 targettime_fix = targettime.replace(tzinfo=None)
                 ws_result.cell(row=i, column=column+1, value=targettime_fix)
                 #Target timezone
-                print(targettime)
                 print(i, targettz_raw)
                 prevlat = lat
                 prevlon = lon
