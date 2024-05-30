@@ -1,21 +1,25 @@
 from openpyxl import Workbook
-from utility import *
 
-def alpha_sheet(original_sheet, targetnumber):
-    original_headers = column_headers(original_sheet)
-    # Create result workbook and sheet
-    wb_result = Workbook()
-    ws_result = wb_result.active
+from utility import *
+from datetime import timedelta
+
+
+def alpha_sheet(original_book, targetnumber):
+    original_headers = column_headers(original_book)
+    # Create result sheet
+    original_sheet = original_book.active
+    original_sheet.title = "Original"
+    ws_result = original_book.create_sheet("Modified")
     # Create headers
     for cell in format:
-        ws_result.cell(row=1, column=format.index(cell)+1, value=cell)
-    #Initialize variables to save previous lat/lon
+        ws_result.cell(row=1, column=format.index(cell) + 1, value=cell)
+    # Initialize variables to save previous lat/lon
     prevlat = None
     prevlon = None
     prevtz = None
     # Create data into every row, one row at a time
-    for i in range(2, original_sheet.max_row+1):
-        #check if A_party
+    for i in range(2, original_sheet.max_row + 1):
+        # check if A_party
         A_party = original_sheet.cell(row=i, column=original_headers['A Number']).value == targetnumber
         column = 0
         # Create main data
@@ -25,11 +29,12 @@ def alpha_sheet(original_sheet, targetnumber):
             if cell == 'A or B':
                 continue
             elif cell in original_headers:
-                ws_result.cell(row=i, column=column, value=original_sheet.cell(row=i, column=original_headers[cell]).value)
+                ws_result.cell(row=i, column=column,
+                               value=original_sheet.cell(row=i, column=original_headers[cell]).value)
             elif cell == 'ID':
-                ws_result.cell(row=i, column=column, value=i-1)
+                ws_result.cell(row=i, column=column, value=i - 1)
             elif cell == 'victimdatetime':
-                #Victim's datetime
+                # Victim's datetime
                 origdate = original_sheet.cell(row=i, column=original_headers["UTC Date"]).value
                 origtime = original_sheet.cell(row=i, column=original_headers["UTC Time"]).value
                 origtimespecifics = origtime.split(":")
@@ -39,12 +44,13 @@ def alpha_sheet(original_sheet, targetnumber):
                         break
                     origtimespecifics[x] = int(origtimespecifics[x])
                     x += 1
-                origtime_full = origdate + timedelta(hours=origtimespecifics[0], minutes=origtimespecifics[1], seconds=origtimespecifics[2])
+                origtime_full = origdate + timedelta(hours=origtimespecifics[0], minutes=origtimespecifics[1],
+                                                     seconds=origtimespecifics[2])
                 origtime_tz = alpha_tz.localize(origtime_full)
                 realdate_tz = origtime_tz.astimezone(main_tz)
                 realdate_tz = realdate_tz.replace(tzinfo=None)
                 ws_result.cell(row=i, column=column, value=realdate_tz)
-                #Target's datetime and timezone
+                # Target's datetime and timezone
                 if A_party:
                     lat = original_sheet.cell(row=i, column=original_headers["A Start Location Latitude"]).value
                     lon = original_sheet.cell(row=i, column=original_headers["A Start Location Longitude"]).value
@@ -59,13 +65,13 @@ def alpha_sheet(original_sheet, targetnumber):
                     targettz = pytz.timezone(targettz_raw)
                 targettime = origtime_tz.astimezone(targettz)
                 targettime_fix = targettime.replace(tzinfo=None)
-                ws_result.cell(row=i, column=column+1, value=targettime_fix)
-                #Target timezone
+                ws_result.cell(row=i, column=column + 1, value=targettime_fix)
+                # Target timezone
                 print(i, targettz_raw)
                 prevlat = lat
                 prevlon = lon
                 prevtz = targettz
-                ws_result.cell(row=i, column=column+2, value=targettz_raw)
+                ws_result.cell(row=i, column=column + 2, value=targettz_raw)
             # elif cell == 'endtime':
             #     durationsec = original_sheet.cell(row=i, column=original_headers["Duration"]).value
             #     endtime = realdate_tz + timedelta(seconds=durationsec)
@@ -101,4 +107,4 @@ def alpha_sheet(original_sheet, targetnumber):
                         tempvalue = (list(target_numbers.keys())
                         [list(target_numbers.values()).index(tempvalue)])
                     ws_result.cell(row=i, column=column, value=tempvalue)
-    return wb_result
+    return original_book
