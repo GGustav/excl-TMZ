@@ -16,6 +16,7 @@ for file in os.listdir('originals'):
     origpath = "originals/" + file
     outputpath = "output/o_" + file
     # Open original workbook and sheet
+    os.makedirs("output", exist_ok=True)
     shutil.copyfile(origpath, outputpath)
     wb_orig = openpyxl.load_workbook(outputpath)
 
